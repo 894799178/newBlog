@@ -10,9 +10,11 @@ public class testDBUtil {
 
         @Test
         public void testDBUtil() throws SQLException {
-            Connection conn = DBUtil.getConnection();
+            for(int i = 0 ;i<100;i++){
+                Connection conn = DBUtil.getConnection();
+                System.out.println(conn);
+            }
 
-            System.out.println(conn);
 
 
 

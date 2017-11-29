@@ -1,16 +1,17 @@
 package com.blog.dao.db;
 
-import java.sql.Connection;
 import java.util.List;
 
 /**
- * 数据处理接口
+ * 处理数据的接口
  * @param <T>
  */
-interface DataDisposeInterface<T>  {
+interface DataDisposeInterface<T> {
     public List<T> getAll();
     public T getById(int id);
     public T getByName(String name);
-    public void getByName();
+    public int update(T obj);
+    public int deleteById(int id);
+    public int insert(T obj);
 
 }
