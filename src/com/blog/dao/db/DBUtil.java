@@ -1,0 +1,28 @@
+package com.blog.dao.db;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class DBUtil {
+        private static DataSource dataSource = null;
+
+
+        static{
+                dataSource =   new ComboPooledDataSource("Blog");
+        }
+
+        /**
+         *  获取一个Connection
+         * @return
+         * @throws SQLException
+         */
+        public static Connection getConnection() throws SQLException {
+
+                return dataSource.getConnection();
+        }
+
+
+}
