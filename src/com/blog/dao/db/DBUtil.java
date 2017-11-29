@@ -13,9 +13,8 @@ public class DBUtil {
         static{
                 dataSource =   new ComboPooledDataSource("Blog");
         }
-
         /**
-         *  获取一个Connection
+         *  获取一个Connection实例
          * @return
          * @throws SQLException
          */
@@ -23,6 +22,13 @@ public class DBUtil {
 
                 return dataSource.getConnection();
         }
-
-
+        public static void releaseConnection(Connection connection){
+                        try{
+                                if(connection != null){
+                                     connection.close();
+                                }
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        }
+        }
 }
