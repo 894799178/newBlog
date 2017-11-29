@@ -11,6 +11,6 @@ interface DataDisposeInterface<T>  {
     public List<T> getAll();
     public T getById(int id);
     public T getByName(String name);
-
+    public void getByName();
 
 }
