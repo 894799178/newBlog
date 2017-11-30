@@ -7,6 +7,7 @@ import java.util.List;
 public class DataDisposeInterfaceImp extends DAO<User> implements  DataDisposeInterface{
 
 
+
     @Override
     public List getAll() {
         String sql = "select id,name,age,sex,phone,ddate from user";

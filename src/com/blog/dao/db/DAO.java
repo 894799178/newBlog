@@ -98,6 +98,7 @@ public class DAO<T>  {
         return ps;
     }
 
+
     /**
      * 传入PreparedStatement输出结果集合
      * @param ps  传入PreparedStatement

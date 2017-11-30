@@ -10,6 +10,7 @@ public class DBUtil {
         private static DataSource dataSource = null;
 
 
+
         static{
                 dataSource =   new ComboPooledDataSource("Blog");
         }
