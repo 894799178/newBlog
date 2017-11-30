@@ -18,8 +18,7 @@ public class DataDisposeInterfaceImp extends DAO<User> implements  DataDisposeIn
     @Override
     public Object getById(int id) {
         String sql = "select id,name,age,sex,phone from user where id = ?";
-
-        return null;
+        return get(sql,User.class,id);
     }
 
     @Override

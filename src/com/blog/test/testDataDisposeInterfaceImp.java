@@ -12,4 +12,8 @@ public class testDataDisposeInterfaceImp extends DataDisposeInterfaceImp {
 
         System.out.print(super.getAll());
     }
+    @Test
+    public void testGetForId(){
+        System.out.println(super.getById(1));
+    }
 }

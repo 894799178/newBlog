@@ -14,6 +14,7 @@ public class DAO<T>  {
      * @param <T>
      * @return
      */
+    DBUtil dbu = new DBUtil();
      public <T>List getForList(String sql,Class<T> clazz){
         Connection conn = null;
         List <User> list =null;
@@ -27,7 +28,6 @@ public class DAO<T>  {
         }finally {
             DBUtil.releaseConnection(conn);
         }
-    System.out.println(list);
         return list;
     }
 
@@ -51,7 +51,7 @@ public class DAO<T>  {
         }finally {
             DBUtil.releaseConnection(conn);
         }
-            if(list.get(0) != null ){
+            if(list.size()>0 ){
                 return list.get(0);
             }
         return null;
@@ -77,8 +77,6 @@ public class DAO<T>  {
                 list.add(obj);
             }
             if(list.size()>0){
-                System.out.println(list);
-
                 return list;
             }
         } catch (Exception e) {
