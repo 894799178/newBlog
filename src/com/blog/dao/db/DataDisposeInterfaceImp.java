@@ -1,19 +1,16 @@
 package com.blog.dao.db;
 
-import com.blog.domain.user;
-import com.mysql.jdbc.PreparedStatement;
+import com.blog.domain.User;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
-public class DataDisposeInterfaceImp extends DAO<user> implements  DataDisposeInterface{
+public class DataDisposeInterfaceImp extends DAO<User> implements  DataDisposeInterface{
 
 
     @Override
     public List getAll() {
         String sql = "select id,name,age,sex,phone,ddate from user";
-        List<user> list  = getForList(sql);
+        List<User> list  = getForList(sql,User.class);
         return list;
     }
 
