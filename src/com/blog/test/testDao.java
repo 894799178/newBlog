@@ -16,7 +16,7 @@ public class testDao  extends DAO{
         sql = "select id,name,age,sex,phone from user where id = ?";
         super.get(sql,User.class,1);
         sql = "select max(age) from user ";
-       super.getForValue(sql,User.class);
+       super.getForValue(sql);
 
 
     }

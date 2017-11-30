@@ -10,13 +10,15 @@ public class DataDisposeInterfaceImp extends DAO<User> implements  DataDisposeIn
 
     @Override
     public List getAll() {
-        String sql = "select id,name,age,sex,phone,ddate from user";
+        String sql = "select id,name,age,sex,phone from user";
         List<User> list  = getForList(sql,User.class);
         return list;
     }
 
     @Override
     public Object getById(int id) {
+        String sql = "select id,name,age,sex,phone from user where id = ?";
+
         return null;
     }
 

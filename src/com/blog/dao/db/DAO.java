@@ -21,7 +21,7 @@ public class DAO<T>  {
             conn = DBUtil.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql);
 
-            list = retuenForUserResult(ps,clazz);
+            list = retuenForResult(ps,clazz);
         }  catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -45,43 +45,51 @@ public class DAO<T>  {
             conn = DBUtil.getConnection();
             PreparedStatement ps=fillPlaceholder(conn.prepareStatement(sql),args);
             User user = new User();
-            list = retuenForUserResult(ps,user.getClass());
+            list = retuenForResult(ps,user.getClass());
         }  catch (Exception e) {
             e.printStackTrace();
         }finally {
             DBUtil.releaseConnection(conn);
         }
-        System.out.println(list.get(0));
-        return list.get(0);
+            if(list.get(0) != null ){
+                return list.get(0);
+            }
+        return null;
     }
-
     /**
-     * 获取某些单一的数据...
+     * 获取某些无关联的数据...
      * @param sql
      * @param args 填充占位符的数据
      * @return 返回一个对象
-     * 重写!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      *
      */
-
-    public  Object getForValue(String sql,Class clazz,Object ... args){
+    public  List getForValue(String sql,Object ... args){
         Connection conn = null;
-        List <T>list = null;
+        List list = new ArrayList();
         try{
             conn = DBUtil.getConnection();
             PreparedStatement ps=fillPlaceholder(conn.prepareStatement(sql),args);
-         //   list=retuenForUserResult(ps,clazz);
+            ResultSet resultSet =ps.executeQuery();
+            Object obj = null;
+            int i = 1;
+            while(resultSet.next()){
+                obj = resultSet.getObject(i++);
+                list.add(obj);
+            }
+            if(list.size()>0){
+                System.out.println(list);
+
+                return list;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
             DBUtil.releaseConnection(conn);
         }
-        System.out.println(list);
         //list.get(0).values().toArray();
         //额....先获取到list中的map然后通过values方法转换成Collection,在调用他的toArray方法.
         return null;
     }
-
     /**
      * 填充占位符
      * @param ps 未填充占位符的PreparedStatement
@@ -97,8 +105,6 @@ public class DAO<T>  {
         }
         return ps;
     }
-
-
     /**
      * 传入PreparedStatement输出结果集合
      * @param ps  传入PreparedStatement
@@ -106,7 +112,7 @@ public class DAO<T>  {
      * @return 一个 list 集合 这个集合包含一个map键值对
      * @throws SQLException
      */
-    private <T>List retuenForUserResult(PreparedStatement ps, Class<T> clazz) throws SQLException,Exception {
+    private <T>List retuenForResult(PreparedStatement ps, Class<T> clazz) throws SQLException,Exception {
         List <Object> list = new ArrayList<Object>();
         //执行查询
         ResultSet rs = ps.executeQuery();
@@ -142,6 +148,13 @@ public class DAO<T>  {
         cs[0] -= 32;
         return String.valueOf(cs);
     }
+
+    /**
+     * 利用class 实现对应的实体类
+     * @param clazz
+     * @return
+     * @throws Exception
+     */
     private Object makeClass(Class clazz) throws Exception{
         Object obj = clazz.newInstance();
         return obj;

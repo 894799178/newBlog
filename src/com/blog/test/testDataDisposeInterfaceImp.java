@@ -8,7 +8,8 @@ public class testDataDisposeInterfaceImp extends DataDisposeInterfaceImp {
 
 
     @Test
-    public void testGetAll(){
+    public void testGetAll() {
+
         System.out.print(super.getAll());
     }
 }
