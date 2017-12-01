@@ -24,7 +24,7 @@
                 <button type="submit">登录</button>
                 <div class="error"><span>+</span></div>
             </form>
-            <form action="/" method="post">
+            <form action="" method="post">
                 <button type="submit">注册</button>
                 <div class="error"><span>+</span></div>
             </form>

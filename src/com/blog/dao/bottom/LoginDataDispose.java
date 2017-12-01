@@ -15,9 +15,13 @@ public class LoginDataDispose {
         String sql = "select count(*) from userlogintable where username = ? and password  = ?";
         //额..获取一个数量
         Long i = (Long)dao.getForValue(sql,username,password).toArray()[0];
-
         return i;
-
+    }
+    public int getForUserId(String username){
+        DAO <UserLogin>dao = new DAO<UserLogin>();
+        String sql = "select id from userlogintable where username = ? ";
+        int i = (int)dao.getForValue(sql,username).toArray()[0];
+        return i;
     }
 
 }

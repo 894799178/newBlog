@@ -9,19 +9,21 @@ import java.util.List;
 
 public class DAO<T>  {
     /**
-     * 获取一组或多组数据
+     * 获取多组数据
      * @param sql
      * @param <T>
      * @return
      */
     DBUtil dbu = new DBUtil();
-     public <T>List getForList(String sql,Class<T> clazz){
+     public <T>List getForList(String sql,Class<T> clazz,Object...args){
         Connection conn = null;
-        List <User> list =null;
+        List <T> list =null;
         try {
             conn = DBUtil.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql);
-
+            if(args != null){
+                ps =fillPlaceholder(ps,args);
+            }
             list = retuenForResult(ps,clazz);
         }  catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +38,7 @@ public class DAO<T>  {
      * @param sql
      * @param clazz
      * @param args
-     * @return
+     * @return  某表的一行数据
      */
     public  T get(String sql,Class<T> clazz,Object ... args){
         Connection conn = null;
@@ -125,13 +127,12 @@ public class DAO<T>  {
                 Object objTemp =rs.getObject(i);
                 String str = firstChangeCapitalize(rsmd.getColumnName(i));
                 //使用反射获取对应类的方法并执行
-                if (objTemp != null) {
+                if (objTemp != null ) {
                     Method m = classs.getMethod("set" + str, objTemp.getClass());
                     m.invoke(obj, objTemp);
                 }
             }
             list.add(obj);
-          //  list.add(user);
         }
         return list;
     }

@@ -12,11 +12,12 @@ public class testDao  extends DAO{
     @Test
     public void test(){
         String sql = "select id,name,age,sex,phone from user";
-        super.getForList(sql,User.class);
+       System.out.println( super.getForList(sql,User.class));
         sql = "select id,name,age,sex,phone from user where id = ?";
-        super.get(sql,User.class,1);
+        System.out.println( super.get(sql,User.class,1));
         sql = "select max(age) from user ";
-       super.getForValue(sql);
+        System.out.println( super.getForValue(sql));
+
 
 
     }

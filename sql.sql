@@ -9,7 +9,14 @@ create table user (
     primary key(id)
 
 )
-
+create table contentTable(
+    id int  not null AUTO_INCREMENT,
+    user_id int not null,
+    title varchar(30) not null,
+    Content text,
+    ddate date,
+    primary key (id)
+)
 create table userloginTable(
     id int not null AUTO_INCREMENT,
     userName varchar(20) not null,
