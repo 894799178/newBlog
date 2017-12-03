@@ -1,22 +1,44 @@
 package com.blog.dao.db;
 
 import com.blog.domain.User;
-
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
 
 public class DAO<T>  {
+
+    DBUtil dbu = new DBUtil();
+    Connection conn = null;
+
+    /**
+     * 填入一个组数据到mysql中
+     * @param sql
+     * @param ages
+     * @return
+     */
+    public int singleInsert(String sql,Object...ages){
+        int i = 0;
+        try {
+            conn =DBUtil.getConnection();
+            PreparedStatement ps = fillPlaceholder(conn.prepareStatement(sql),ages);
+            i =ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            DBUtil.releaseConnection(conn);
+        }
+        return i;
+    }
     /**
      * 获取多组数据
      * @param sql
      * @param <T>
      * @return
      */
-    DBUtil dbu = new DBUtil();
      public <T>List getForList(String sql,Class<T> clazz,Object...args){
-        Connection conn = null;
+
         List <T> list =null;
         try {
             conn = DBUtil.getConnection();
@@ -32,7 +54,6 @@ public class DAO<T>  {
         }
         return list;
     }
-
     /**
      * 获得一组数据
      * @param sql
@@ -41,7 +62,6 @@ public class DAO<T>  {
      * @return  某表的一行数据
      */
     public  T get(String sql,Class<T> clazz,Object ... args){
-        Connection conn = null;
         List <T> list = null;
         try{
             conn = DBUtil.getConnection();
@@ -66,7 +86,6 @@ public class DAO<T>  {
      *
      */
     public  List getForValue(String sql,Object ... args){
-        Connection conn = null;
         List list = new ArrayList();
         try{
             conn = DBUtil.getConnection();
@@ -116,9 +135,9 @@ public class DAO<T>  {
         List <Object> list = new ArrayList<Object>();
         //执行查询
         ResultSet rs = ps.executeQuery();
-        ResultSetMetaData rsmd =   rs.getMetaData();
+        ResultSetMetaData rsmd =  rs.getMetaData();
         int col = rsmd.getColumnCount();
-        //
+        //遍历结果
         while(rs.next()){
             Object obj=makeClass(clazz);
             Class classs =  obj.getClass();
@@ -147,7 +166,6 @@ public class DAO<T>  {
         cs[0] -= 32;
         return String.valueOf(cs);
     }
-
     /**
      * 利用class 实现对应的实体类
      * @param clazz

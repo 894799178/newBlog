@@ -6,15 +6,12 @@ import java.util.List;
 
 public class DataDisposeInterfaceImp extends DAO<User> implements  DataDisposeInterface{
 
-
-
     @Override
     public List getAll() {
         String sql = "select id,name,age,sex,phone from user";
         List<User> list  = getForList(sql,User.class);
         return list;
     }
-
     @Override
     public Object getById(int id) {
         String sql = "select id,name,age,sex,phone from user where id = ?";

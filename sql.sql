@@ -13,10 +13,12 @@ create table contentTable(
     id int  not null AUTO_INCREMENT,
     user_id int not null,
     title varchar(30) not null,
-    Content text,
-    ddate date,
+    content text,
+    monthday varchar(10),
+    UNIQUE (title),
     primary key (id)
 )
+#ALTER TABLE contenttable ADD UNIQUE (title);
 create table userloginTable(
     id int not null AUTO_INCREMENT,
     userName varchar(20) not null,

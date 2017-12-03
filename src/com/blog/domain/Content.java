@@ -6,21 +6,21 @@ public class Content {
     private Integer id ;
     private String title;
     private String content;
-    private Date ddate;
-    @Override
-    public String toString() {
-        return "Content{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", dddate='" + ddate + '\'' +
-                '}';
+    private String monthday;
+
+
+    public Content(Integer id, String title, String content, String monthday) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.monthday = monthday;
     }
 
+    public Content() {
+    }
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -41,21 +41,21 @@ public class Content {
         this.content = content;
     }
 
-    public Date getDdate() {
-        return ddate;
+    public String getMonthday() {
+        return monthday;
     }
 
-    public void setDdate(Date ddate) {
-        this.ddate = ddate;
+    public void setMonthday(String monthday) {
+        this.monthday = monthday;
     }
 
-    public Content() {
-    }
-
-    public Content(Integer id, String title, String content, Date ddate) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.ddate = ddate;
+    @Override
+    public String toString() {
+        return "Content{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", monthday='" + monthday + '\'' +
+                '}';
     }
 }

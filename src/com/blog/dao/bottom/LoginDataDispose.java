@@ -17,6 +17,11 @@ public class LoginDataDispose {
         Long i = (Long)dao.getForValue(sql,username,password).toArray()[0];
         return i;
     }
+    /**
+     * 获取UserId 通过用户的帐号获取
+     * @param username
+     * @return
+     */
     public int getForUserId(String username){
         DAO <UserLogin>dao = new DAO<UserLogin>();
         String sql = "select id from userlogintable where username = ? ";

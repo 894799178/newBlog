@@ -4,16 +4,10 @@
 <%@ page import="com.blog.domain.Content" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <%
-        List <Content>list = (List)session.getAttribute("list");
-        if(list == null){
-            System.out.println(list);
-            response.sendRedirect("/login.jsp");
-            return;
-        }
-    %>
+
 <meta charset="gb2312">
 <title>一条小咸鱼</title>
 <meta name="keywords" content="个人博客" />
@@ -28,7 +22,14 @@
 <body>
 <header>
   <div class="logo" data-scroll-reveal="enter right over 1s"><a href="/"><img src="images/logo.png"></a></div>
-  <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s"><a href="index.jsp"><span>首页</span><span class="en">Home</span></a><a href="about.html"><span>关于我</span><span class="en">About</span></a><a href="manshenghuo.html"><span>慢生活</span><span class="en">Life</span></a><a href="learn.html"><span>碎言碎语</span><span class="en">Doing</span></a><a href="mbfx.html"><span>模板分享</span><span class="en">Share</span></a><a href="learn.html"><span>学无止境</span><span class="en">Learn</span></a><a href="gbook.html"><span>留言</span><span class="en">Saying</span></a></nav>
+  <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s"><a href="index.jsp">
+      <span>首页</span><span class="en">Home</span></a>
+      <a href="about.jsp"><span>关于我</span><span class="en">About</span></a>
+      <a href="manshenghuo.jsp"><span>慢生活</span><span class="en">Life</span></a>
+      <a href="learn.jsp"><span>碎言碎语</span><span class="en">Doing</span></a>
+      <a href="edit.jsp"><span>知识填充</span><span class="en">fill</span></a>
+      <a href="learn.jsp"><span>学无止境</span><span class="en">Learn</span></a>
+      <a href="gbook.jsp"><span>留言</span><span class="en">Saying</span></a></nav>
 </header>
 <article>
   <div class="container">
@@ -55,25 +56,21 @@
         <figcaption>让世界拥有它的脚步，让我保有我的茧。当溃烂已极的心灵再不想做一丝一毫的思索时，就让我静静回到我的茧内，以回忆为睡榻，以悲哀为覆被，这是我唯一的美丽。</figcaption>
       </figure>
     </div>
+      <% int i =0;%>
    <ul class="cbp_tmtimeline">
-       <%
-
-            for(int i= 0;i<list.size();i++){
-                Date date =  list.get(i).getDdate();
-       %>
+       <c:forEach  items="${sessionScope.list}" var="data">
+           <%  List briefContents = (List)session.getAttribute("briefContents"); %>
                     <li>
-
-						<time class="cbp_tmtime" ><span><%= date.toString()%></span> <span>2017</span></time>
+						<time class="cbp_tmtime" ><span>${data.monthday}</span> <span>2017</span></time>
 						<div class="cbp_tmicon"></div>
 						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2><%=list.get(i).getTitle()%></h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span><%=list.get(i).getContent()%></p>
-                             <a href="/" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+                            <h2>${data.title}</h2>
+                            <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span><%=briefContents.get(i)+"....."%></p>
+                            <a href="/Watch?id=${data.id}" target="_blank"  class="readmore">阅读全文&gt;&gt;</a>
 						</div>
-					</li>
-      <%
-            }
-      %>
+                    </li>
+           <%i++;%>
+       </c:forEach>
    </ul>
   </div>
 </article>
@@ -81,11 +78,7 @@
 aaaaa <a href="/">adasdasd-1</a>
 </footer>
 <script>
-	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-		(function(){
-			window.scrollReveal = new scrollReveal({reset: true});
-		})();
-	};
+
 </script> 
 </body>
 </html>
