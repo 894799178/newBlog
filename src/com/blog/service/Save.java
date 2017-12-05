@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 该类主要用于保存编辑后的文本,并写入到mysql数据库
+ * 该类主要用于保存编辑后的文本,并写入到mysql数据库.
  */
 public class Save extends HttpServlet{
 

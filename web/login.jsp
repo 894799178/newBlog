@@ -12,8 +12,13 @@
 <script src="js/modernizr.js"></script>
 <![endif]-->
 <script src="js/scrollReveal.js">
-
 </script>
+<script src="assets/js/jquery-1.8.2.min.js"></script>
+<script src="assets/js/supersized.3.2.7.min.js"></script>
+<script src="assets/js/supersized-init.js"></script>
+<script src="assets/js/scripts.js"></script>
+<script src="js/md5.js" type="text/javascript"></script>
+
     <head>
         <%
             if(request.getParameter("username") != null){
@@ -33,22 +38,27 @@
     <body>
         <div class="page-container">
             <h1>Login</h1>
-            <form action="/Login" method="post">
-                <input type="text" name="username" class="username" placeholder="Username" >
-                <input type="password" name="password" class="password" placeholder="Password">
+            <form action="/Login" method="post" onsubmit="md5check()">
+                <input type="hidden" id ="password"  name="password" />
+                <input type="text"   name="username" class="username" placeholder="Username"/>
+                <input type="password" id="paswordMd5"  class="paswordMd5" placeholder="Password"/>
                 <button type="submit">登录</button>
                 <div class="error"><span>+</span></div>
             </form>
-            <form action="" method="post">
+            <form action="/register.jsp" method="post">
                 <button type="submit">注册</button>
                 <div class="error"><span>+</span></div>
             </form>
         </div>
         <!-- Javascript -->
-        <script src="assets/js/jquery-1.8.2.min.js"></script>
-        <script src="assets/js/supersized.3.2.7.min.js"></script>
-        <script src="assets/js/supersized-init.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script>
+            function md5check(){
+                var password_input = document.getElementById("password");
+                var password_md5 = document.getElementById("paswordMd5");
+                password_input.value= hex_md5(password_md5);
+                return true;
+            }
+        </script>
     </body>
 
 </html>

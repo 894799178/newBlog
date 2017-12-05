@@ -6,10 +6,13 @@ import com.blog.domain.Content;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * 查询博客的具体内容呀,标题呀....巴拉巴拉的..
+ * 提供给service层的一些实现.本曾由DAO层提供支持.
+ */
 public class ContentDataDispose {
 
     DAO dao = new DAO();
-
     public int insertContent(int userId,String title,String content) {
         Calendar now = Calendar.getInstance();
         String  date = String.valueOf((now.get(Calendar.MONTH) + 1));

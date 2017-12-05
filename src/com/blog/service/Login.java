@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * 登录类.
- * 该类,
+ * 该类主要保证登录的逻辑,功能由LoginDataDispose类提供底层实现
  */
 public class Login extends HttpServlet {
     @Override

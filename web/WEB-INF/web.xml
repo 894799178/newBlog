@@ -19,7 +19,16 @@
         <servlet-name>Watch</servlet-name>
         <servlet-class>com.blog.service.Watch</servlet-class>
     </servlet>
-
+    
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>com.blog.service.Register</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -32,7 +41,7 @@
         <servlet-name>Watch</servlet-name>
         <url-pattern>/Watch</url-pattern>
     </servlet-mapping>
-
+    
 
     <error-page>
         <error-code>404</error-code>

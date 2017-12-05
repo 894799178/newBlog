@@ -5,6 +5,9 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * 提供连接数据库,释放数据库等功能实现,
+ */
 public class DBUtil {
         private static DataSource dataSource = null;
         static{

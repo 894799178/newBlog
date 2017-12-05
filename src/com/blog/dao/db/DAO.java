@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 
+/**
+ * DAO层,提供对于博客连接数据库的底层实现,以及一些增伤改查的功能实现.
+ * 由DBUtil类提供连接支持,
+ * @param <T>
+ */
 public class DAO<T>  {
 
     DBUtil dbu = new DBUtil();

@@ -3,6 +3,9 @@ package com.blog.dao.bottom;
 import com.blog.dao.db.DAO;
 import com.blog.domain.UserLogin;
 
+/**
+ * 提供给上层login类的功能,底层由Dao层提供支持
+ */
 public class LoginDataDispose {
     /**
      *处理登录.返回数据库中匹配的帐号密码数量
