@@ -22,6 +22,7 @@ public class DBUtil {
 
                 return dataSource.getConnection();
         }
+
         public static void releaseConnection(Connection connection){
             try{
                 if(connection != null){

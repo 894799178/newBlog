@@ -1,10 +1,8 @@
 package com.blog.service;
 
 
-import com.blog.dao.bottom.ContentDataDispose;
-import com.blog.dao.bottom.LoginDataDispose;
+import com.blog.dao.bottom.DataDispose;
 import com.blog.domain.Content;
-import org.omg.CORBA.Request;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +24,13 @@ public class Login extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LoginDataDispose ldd = null;
+        DataDispose ldd = null;
         long i= 0;
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         System.out.println(userName+":"+password);
         if(userName != null || password != null){
-            ldd = new LoginDataDispose();
+            ldd = new DataDispose();
             i= ldd.getForLogin(userName,password);
         }
         //数据库教返回的值大于0 表示存在该帐号密码
@@ -42,7 +40,7 @@ public class Login extends HttpServlet {
             HttpSession hs = req.getSession();
             //设置session的时限
             hs.setMaxInactiveInterval(3600);
-            ContentDataDispose contentDataDispose = new ContentDataDispose();
+            DataDispose contentDataDispose = new DataDispose();
             hs.setAttribute("userId",userId);
             List <Content> list=contentDataDispose.getContentByUserId(userId);
             int size = list.size();

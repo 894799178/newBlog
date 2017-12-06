@@ -14,7 +14,6 @@ import java.util.SortedMap;
  */
 public class DAO<T>  {
 
-    DBUtil dbu = new DBUtil();
     Connection conn = null;
 
     /**
@@ -98,9 +97,11 @@ public class DAO<T>  {
             ResultSet resultSet =ps.executeQuery();
             Object obj = null;
             int i = 1;
+
             while(resultSet.next()){
                 obj = resultSet.getObject(i++);
                 list.add(obj);
+
             }
             if(list.size()>0){
                 return list;

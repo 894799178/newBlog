@@ -2,17 +2,65 @@ package com.blog.dao.bottom;
 
 import com.blog.dao.db.DAO;
 import com.blog.domain.Content;
+import com.blog.domain.UserLogin;
 
 import java.util.Calendar;
 import java.util.List;
 
 /**
- * 查询博客的具体内容呀,标题呀....巴拉巴拉的..
- * 提供给service层的一些实现.本曾由DAO层提供支持.
+ * 提供给上层login类的功能,底层由Dao层提供支持
  */
-public class ContentDataDispose {
-
+public class DataDispose {
+    /**
+     *处理登录.返回数据库中匹配的帐号密码数量
+     * @param username
+     * @param password
+     * @return
+     */
     DAO dao = new DAO();
+    public long getForLogin(String username,String password){
+        DAO <UserLogin>dao = new DAO<UserLogin>();
+        String sql = "select count(*) from userlogintable where username = ? and password  = ?";
+        //额..获取一个数量
+        Long i = (Long)dao.getForValue(sql,username,password).toArray()[0];
+        return i;
+    }
+    /**
+     * 获取UserId 通过用户的帐号获取
+     * @param username
+     * @return
+     */
+    public int getForUserId(String username){
+        DAO <UserLogin>dao = new DAO<UserLogin>();
+        String sql = "select id from userlogintable where username = ? ";
+        int i = (int)dao.getForValue(sql,username).toArray()[0];
+        return i;
+    }
+
+    /**
+     * 主要获取存放用户帐号密码中的 帐号是否存在.
+     * @param account
+     * @return
+     */
+    public long  getAccountForCount(String account){
+        String sql = "select count(*) from userlogintable where username = ?";
+        return  (long)dao.getForValue(sql,account).get(0);
+    }
+
+
+    public int addAccount(String account,String password){
+        String sql = "insert into userlogintable (username,password) values(?,?)";
+        return  dao.singleInsert(sql,account,password);
+    }
+
+
+    /**
+     *  添加主要内容到博客
+     * @param userId
+     * @param title
+     * @param content
+     * @return
+     */
     public int insertContent(int userId,String title,String content) {
         Calendar now = Calendar.getInstance();
         String  date = String.valueOf((now.get(Calendar.MONTH) + 1));
@@ -57,4 +105,5 @@ public class ContentDataDispose {
         }
         return null;
     }
+
 }

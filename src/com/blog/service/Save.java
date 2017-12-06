@@ -1,6 +1,6 @@
 package com.blog.service;
 
-import com.blog.dao.bottom.ContentDataDispose;
+import com.blog.dao.bottom.DataDispose;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class Save extends HttpServlet{
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ContentDataDispose contentDataDispose = new ContentDataDispose();
+        DataDispose contentDataDispose = new DataDispose();
         req.setCharacterEncoding("utf-8");
         HttpSession hs = req.getSession();
         String content = req.getParameter("Content");
