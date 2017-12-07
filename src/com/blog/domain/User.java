@@ -1,5 +1,9 @@
 package com.blog.domain;
 
+/**
+ * 用户一些数据资料,
+ * 昵称,性别,年龄,手机号等......
+ */
 public class User {
     private Integer id ;
     private String name ;
@@ -17,7 +21,6 @@ public class User {
                 ", phone='" + phone + '\'' +
                 '}';
     }
-
 
     public Integer getId() {
         return id;

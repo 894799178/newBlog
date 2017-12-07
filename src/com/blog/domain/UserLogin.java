@@ -1,5 +1,9 @@
 package com.blog.domain;
 
+/**
+ * 用户登录的类,
+ * 帐号,密码等..
+ */
 public class UserLogin {
     private Integer id;
     private String username;

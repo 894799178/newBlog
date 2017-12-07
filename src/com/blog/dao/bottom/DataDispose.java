@@ -47,7 +47,12 @@ public class DataDispose {
         return  (long)dao.getForValue(sql,account).get(0);
     }
 
-
+    /**
+     * 注册使用,主要用于添加帐号到数据库中
+     * @param account
+     * @param password
+     * @return
+     */
     public int addAccount(String account,String password){
         String sql = "insert into userlogintable (username,password) values(?,?)";
         return  dao.singleInsert(sql,account,password);
@@ -55,7 +60,7 @@ public class DataDispose {
 
 
     /**
-     *  添加主要内容到博客
+     *  添加主要内容到博客中
      * @param userId
      * @param title
      * @param content

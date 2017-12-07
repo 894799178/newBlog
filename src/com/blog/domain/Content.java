@@ -2,6 +2,10 @@ package com.blog.domain;
 
 import java.sql.Date;
 
+/**'
+ * 该类主要用来存储
+ * 用户博客的内容和标题.以及编写改博客的时间
+ */
 public class Content {
     private Integer id ;
     private String title;

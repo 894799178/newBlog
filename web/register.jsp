@@ -18,7 +18,6 @@
     %>
 </head>
 <body>
-
 <form action="/Register" method="post" onsubmit="encry()">
    <input type="hidden" id ="password"  name ="password" value="">
     用户名:<input type="text" name = "name" value="${param.name}"/><br>
