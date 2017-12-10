@@ -52,6 +52,7 @@
         </div>
         <!-- Javascript -->
         <script>
+            <!--MD5加密数据-->
             function md5check(){
                 var password_input = document.getElementById("password");
                 var password_md5 = document.getElementById("passwordMd5");

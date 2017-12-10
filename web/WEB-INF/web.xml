@@ -24,7 +24,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>com.blog.service.Register</servlet-class>
     </servlet>
-    
+
+
+
+
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -41,8 +44,40 @@
         <servlet-name>Watch</servlet-name>
         <url-pattern>/Watch</url-pattern>
     </servlet-mapping>
-    
 
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.blog.service.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/about.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/content.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/edit.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/gbook.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/learn.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/manshenghuo.jsp</url-pattern>
+    </filter-mapping>
     <error-page>
         <error-code>404</error-code>
         <location>/error.jsp</location>

@@ -93,7 +93,7 @@ public class DataDispose {
      * @return
      */
     public List<Content> getContentByUserId(int user_id) {
-        String sql = "select id,title,content,monthday from contenttable where user_id = ? limit 5";
+        String sql = "select id,title,content,monthday from contenttable where user_id = ? limit 10";
         List<Content> list = dao.getForList(sql, Content.class, user_id);
         return list;
     }

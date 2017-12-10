@@ -5,9 +5,9 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-
 <meta charset="gb2312">
 <title>一条小咸鱼</title>
 <meta name="keywords" content="个人博客" />
@@ -58,18 +58,16 @@
     </div>
       <% int i =0;%>
    <ul class="cbp_tmtimeline">
-       <c:forEach  items="${sessionScope.list}" var="data">
-           <%  List briefContents = (List)session.getAttribute("briefContents"); %>
-                    <li>
-						<time class="cbp_tmtime" ><span>${data.monthday}</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-                            <h2>${data.title}</h2>
-                            <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span><%=briefContents.get(i)+"....."%></p>
-                            <a href="/Watch?id=${data.id}" target="_blank"  class="readmore">阅读全文&gt;&gt;</a>
-						</div>
-                    </li>
-           <%i++;%>
+       <c:forEach  items="${sessionScope.list}" var="data" begin="0" end="${fn:length(list)}" varStatus="status">
+           <li>
+               <time class="cbp_tmtime" ><span>${data.monthday}</span> <span>2017</span></time>
+               <div class="cbp_tmicon"></div>
+               <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+                   <h2>${data.title}</h2>
+                   <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>${sessionScope.briefContents.get(status.index)} </p>
+                   <a href="/Watch?id=${data.id}" target="_blank"  class="readmore">阅读全文&gt;&gt;</a>
+               </div>
+           </li>
        </c:forEach>
    </ul>
   </div>
