@@ -4,11 +4,12 @@ import com.blog.dao.db.DAO;
 import com.blog.domain.Content;
 import com.blog.domain.UserLogin;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 /**
- * 提供给上层login类的功能,底层由Dao层提供支持
+ * 提供给上层类的功能支持,底层由Dao层提供支持
  */
 public class DataDispose {
     /**
@@ -93,7 +94,7 @@ public class DataDispose {
      * @return
      */
     public List<Content> getContentByUserId(int user_id) {
-        String sql = "select id,title,content,monthday from contenttable where user_id = ? limit 10";
+        String sql = "select id,title,content,monthday from contenttable where user_id = ? order by id limit 10";
         List<Content> list = dao.getForList(sql, Content.class, user_id);
         return list;
     }
@@ -110,5 +111,18 @@ public class DataDispose {
         }
         return null;
     }
+    public List<Content> inciseContent(List<Content> list){
+        int size = list.size();
+        List briefContents = new ArrayList();
+        //取到对象的博客,主要内容进行切割成简要内容.
+        for (int i1 =0;i1<size;i1++){
+            String str = list.get(i1).getContent();
+            if(str.length()>130){
+                str=str.substring(0,130);
+            }
+            briefContents.add(str);
+        }
 
+        return briefContents;
+    }
 }

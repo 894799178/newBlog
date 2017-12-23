@@ -22,7 +22,7 @@ public class Watch extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
+       // req.setCharacterEncoding("utf-8");
         int id =Integer.valueOf(req.getParameter("id")) ;
         HttpSession hs = req.getSession();
         List <Content>list =(List)hs.getAttribute("list");

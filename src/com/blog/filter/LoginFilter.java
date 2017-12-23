@@ -1,13 +1,16 @@
-package com.blog.service;
+package com.blog.filter;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
 public class LoginFilter implements Filter {
-
+    /**
+     * 登录过滤器
+     * @param filterConfig
+     * @throws ServletException
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("init");

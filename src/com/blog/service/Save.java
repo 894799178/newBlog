@@ -21,7 +21,7 @@ public class Save extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DataDispose contentDataDispose = new DataDispose();
-        req.setCharacterEncoding("utf-8");
+        //req.setCharacterEncoding("utf-8");
         HttpSession hs = req.getSession();
         String content = req.getParameter("Content");
         String title = req.getParameter("title");

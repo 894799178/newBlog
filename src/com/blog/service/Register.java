@@ -20,12 +20,11 @@ public class Register extends HttpServlet{
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
+       // req.setCharacterEncoding("utf-8");
         DataDispose dataDispose = new DataDispose();
         String name = req.getParameter("name");
         String account = req.getParameter("account");
         String password =req.getParameter("password");
-        System.out.println(name+":"+account+":"+password);
         if ("".equals(name) || "".equals(account) || "".equals(password)){
             req.getRequestDispatcher(req.getContextPath() +"/register.jsp").forward(req,resp);
             req.setAttribute("state","你的资料不能为空");
