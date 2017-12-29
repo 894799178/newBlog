@@ -69,6 +69,7 @@ public class DataDispose {
      */
     public int insertContent(int userId,String title,String content) {
         Calendar now = Calendar.getInstance();
+        //日期的处理
         String  date = String.valueOf((now.get(Calendar.MONTH) + 1));
         date += "-" + String.valueOf(now.get(Calendar.DAY_OF_MONTH)) ;
         String sql = "insert into  contenttable values(?,?,?,?,?)";

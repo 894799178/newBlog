@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import com.blog.dao.bottom.DataDispose;
+import com.blog.domain.Content;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
